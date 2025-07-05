@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require "cpf_cnpj_plus"
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/spec/' # Ignora a pasta de testes nos relatórios
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
