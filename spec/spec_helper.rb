@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "cpf_cnpj_plus"
-require 'simplecov'
+require "simplecov"
 SimpleCov.start do
-  add_filter '/spec/' # Ignora a pasta de testes nos relatórios
+  add_filter "/spec/" # Ignora a pasta de testes nos relatórios
 end
 
 RSpec.configure do |config|

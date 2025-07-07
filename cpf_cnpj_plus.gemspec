@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["doug.neo@gmail.com"]
 
   spec.summary       = "Validação, geração e formatação de números de CPF e CNPJ para o Brasil."
-  spec.description   = "Fornece métodos práticos para validar, gerar e formatar números de CPF e CNPJ, incluindo ferramentas de linha de comando para facilitar integrações em sistemas bancários, governamentais e aplicações Ruby em geral."
-  
+  spec.description   = "Fornece métodos práticos para validar, gerar e formatar números de CPF e CNPJ, incluindo
+                        ferramentas de linha de comando para facilitar integrações em sistemas bancários,
+                        governamentais e aplicações Ruby em geral."
 
   spec.homepage      = "https://github.com/DougNeo/cpf_cnpj_plus.git"
 

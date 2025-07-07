@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require 'byebug'
-RSpec.describe CpfCnpjPlus::Validator::Cnpj do 
+
+require "byebug"
+RSpec.describe CpfCnpjPlus::Validator::Cnpj do
   describe ".valid?" do
     it "returns true for a valid CNPJ" do
       expect(described_class.valid?("12.345.678/0001-95")).to be true

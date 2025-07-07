@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-require 'byebug'
+
+require "byebug"
 RSpec.describe CpfCnpjPlus::Validator::Cpf do
   describe ".valid?" do
-    
     it "returns true for a valid CPF" do
       expect(described_class.valid?("103.212.557-80")).to be true
     end
@@ -13,7 +13,7 @@ RSpec.describe CpfCnpjPlus::Validator::Cpf do
 
     it "returns false for a CPF with incorrect length" do
       expect(described_class.valid?("12345678")).to be false
-    end 
+    end
 
     it "returns false for a CPF with all digits the same" do
       expect(described_class.valid?("111.111.111-11")).to be false

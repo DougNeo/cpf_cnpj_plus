@@ -41,19 +41,19 @@ A gem oferece uma API unificada para CPF e CNPJ. Exemplos:
 require "cpf_cnpj_plus"
 
 CPF
-CPFPlus.format("12345678909") # => "123.456.789-09"
-CPFPlus.valid?("123.456.789-09") # => true ou false
-CPFPlus.generate # => Gera um CPF válido
+CpfCnpjPlus.valid_cpf?("123.456.789-09") # => true ou false
+CpfCnpjPlus.format_cpf("12345678909") # => "123.456.789-09"
+CpfCnpjPlus.generate # => Gera um CPF válido
 
 CNPJ
-CNPJPlus.format("12345678000195") # => "12.345.678/0001-95"
-CNPJPlus.valid?("12.345.678/0001-95") # => true ou false
-CNPJPlus.generate # => Gera um CNPJ válido
+CpfCnpjPlus.valid?("12.345.678/0001-95") # => true ou false
+CpfCnpjPlus.format_cnpj("12345678000195") # => "12.345.678/0001-95"
+CpfCnpjPlus.generate # => Gera um CNPJ válido
 
 CNPJ Alfanumérico (novo formato)
-CNPJPlus.valid?("A1234567B00195") # => true ou false
-CNPJPlus.format("A1234567B00195") # => "A12.345.67B/0019-5"
-CNPJPlus.generate # => Gera um CNPJ alfanumérico válido
+CpfCnpjPlus.valid?("A1234567B00195") # => true ou false
+CpfCnpjPlus.format_cnpj("A1234567B00195") # => "A12.345.67B/0019-5"
+CpfCnpjPlus.generate # => Gera um CNPJ alfanumérico válido
 ```
 
 
