@@ -4,6 +4,7 @@ module CpfCnpjPlus
       def self.valid?(cpf)
         cpf = cpf.to_s.gsub(/[^0-9]/, "")
         return false unless cpf.length == 11 && cpf =~ /^\d{11}$/
+        return false if cpj_not_valid?(cpf)
         first_digit(cpf) && second_digit(cpf)
       end
 
@@ -31,6 +32,13 @@ module CpfCnpjPlus
           ponteiro -= 1
         end
         soma * 10 % 11 == cpf[10].to_i || (soma * 10 % 11 == 10 && cpf[10].to_i == 0)
+      end
+
+      def self.cpj_not_valid?(cpf)
+        cpf = cpf.to_s.gsub(/[^0-9]/, "")
+        ["00000000000", "11111111111", "22222222222", "33333333333",
+         "44444444444", "55555555555", "66666666666",
+         "77777777777", "88888888888", "99999999999"].include?(cpf)
       end
     end
   end

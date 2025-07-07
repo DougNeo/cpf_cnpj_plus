@@ -13,6 +13,22 @@ RSpec.describe CpfCnpjPlus::Validator::Cpf do
 
     it "returns false for a CPF with incorrect length" do
       expect(described_class.valid?("12345678")).to be false
+    end 
+
+    it "returns false for a CPF with all digits the same" do
+      expect(described_class.valid?("111.111.111-11")).to be false
+    end
+
+    it "returns false for a CPF with non-numeric characters" do
+      expect(described_class.valid?("abc.def.ghi-jk")).to be false
+    end
+
+    it "returns false for an empty string" do
+      expect(described_class.valid?("")).to be false
+    end
+
+    it "returns false for nil" do
+      expect(described_class.valid?(nil)).to be false
     end
   end
 end

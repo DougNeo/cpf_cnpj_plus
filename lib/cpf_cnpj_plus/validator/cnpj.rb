@@ -4,6 +4,7 @@ module CpfCnpjPlus
       def self.valid?(cnpj)
         cnpj = cnpj.to_s.upcase.gsub(/[^A-Z0-9]/, "")
         return false unless cnpj.length == 14
+        return false if cpj_not_valid?(cnpj)
         return false unless cnpj[0..11] =~ /^[A-Z0-9]{12}$/ && cnpj[12..13] =~ /^[0-9]{2}$/
 
         base = cnpj[0..11].chars.map { |c| char_to_value(c) }
@@ -46,6 +47,12 @@ module CpfCnpjPlus
         digit = (soma * 10) % 11
         digit = 0 if digit == 10
         digit
+      end
+      def self.cpj_not_valid?(cnpj)
+        cnpj = cnpj.to_s.gsub(/[^0-9]/, "")
+        ["00000000000000", "11111111111111", "22222222222222", "33333333333333",
+         "44444444444444", "55555555555555", "66666666666666", "77777777777777",
+         "88888888888888", "99999999999999"].include?(cnpj)
       end
     end
   end

@@ -1,43 +1,93 @@
-# CpfCnpjPlus
+# CPF CNPJ Plus
 
-TODO: Delete this and the text below, and describe your gem
+**cpf_cnpj_plus** é uma biblioteca Ruby para **validar, gerar e formatar** números de CPF e CNPJ brasileiros, tanto via código Ruby quanto pela linha de comando.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cpf_cnpj_plus`. To experiment with that code, run `bin/console` for an interactive prompt.
+---
 
-## Installation
+## 🚀 Novidade: Suporte a CNPJ Alfanumérico
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+> **Atenção:** Esta gem já está atualizada para validar e formatar os novos CNPJs alfanuméricos, conforme a alteração anunciada pela Receita Federal para julho de 2026.  
+> Assim, seu sistema estará pronto para lidar tanto com o formato tradicional quanto com o novo padrão de CNPJ.
 
-Install the gem and add to the application's Gemfile by executing:
+---
 
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+## Instalação
+
+Adicione esta linha ao seu Gemfile:
+
+```ruby
+gem "cpf_cnpj_plus"
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+
+E execute:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
+```
+Ou instale diretamente com:
+
+```bash
+gem install cpf_cnpj_plus
 ```
 
-## Usage
+## Uso Básico
 
-TODO: Write usage instructions here
+### API Ruby
 
-## Development
+A gem oferece uma API unificada para CPF e CNPJ. Exemplos:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+require "cpf_cnpj_plus"
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+CPF
+CPFPlus.format("12345678909") # => "123.456.789-09"
+CPFPlus.valid?("123.456.789-09") # => true ou false
+CPFPlus.generate # => Gera um CPF válido
 
-## Contributing
+CNPJ
+CNPJPlus.format("12345678000195") # => "12.345.678/0001-95"
+CNPJPlus.valid?("12.345.678/0001-95") # => true ou false
+CNPJPlus.generate # => Gera um CNPJ válido
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cpf_cnpj_plus. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/cpf_cnpj_plus/blob/master/CODE_OF_CONDUCT.md).
+CNPJ Alfanumérico (novo formato)
+CNPJPlus.valid?("A1234567B00195") # => true ou false
+CNPJPlus.format("A1234567B00195") # => "A12.345.67B/0019-5"
+CNPJPlus.generate # => Gera um CNPJ alfanumérico válido
+```
 
-## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+### Linha de comando
 
-## Code of Conduct
+A gem fornece comandos CLI:
 
-Everyone interacting in the CpfCnpjPlus project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/cpf_cnpj_plus/blob/master/CODE_OF_CONDUCT.md).
+```bash
+$ cpf_plus --check 123.456.789-09
+$ cpf_plus --format 12345678909
+$ cpf_plus --generate
+$ cnpj_plus --check 12.345.678/0001-95
+$ cnpj_plus --check A12.345.67B/0019-5
+$ cnpj_plus --generate
+```
+
+## Compatibilidade
+
+- Ruby >= 3.1.0
+
+## Contribuição
+
+1. Faça um fork do projeto
+2. Crie sua branch (`git checkout -b minha-feature`)
+3. Commit suas alterações (`git commit -am 'Adiciona nova feature'`)
+4. Faça push para a branch (`git push origin minha-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+MIT
+
+---
+
+*Para dúvidas ou sugestões, abra uma issue ou envie um pull request!*
+
+
