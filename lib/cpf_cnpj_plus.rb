@@ -2,6 +2,8 @@
 
 require_relative "cpf_cnpj_plus/version"
 require_relative "cpf_cnpj_plus/validator"
+require_relative "cpf_cnpj_plus/format"
+require_relative "cpf_cnpj_plus/generate"
 
 # Módulo principal da gem cpf_cnpj_plus.
 # Fornece métodos para validação, geração e formatação de CPFs e CNPJs,
@@ -29,7 +31,7 @@ module CpfCnpjPlus
     CpfCnpjPlus::Generate::Cpf.generate
   end
 
-  def self.generate_cnpj
-    CpfCnpjPlus::Generate::Cnpj.generate
+  def self.generate_cnpj(alfa: false)
+    CpfCnpjPlus::Generate::Cnpj.generate(alfa)
   end
 end

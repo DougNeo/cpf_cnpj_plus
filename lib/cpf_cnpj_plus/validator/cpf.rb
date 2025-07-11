@@ -14,27 +14,29 @@ module CpfCnpjPlus
       end
 
       def self.first_digit(cpf)
-        first_digit = cpf[0..8]
+        first_digits = cpf[0..8]
         soma = 0
         ponteiro = 10
-        first_digit.chars.each do |char|
-          res = (char.to_i * ponteiro)
-          soma += res
+        first_digits.chars.each do |char|
+          soma += char.to_i * ponteiro
           ponteiro -= 1
         end
-        soma * 10 % 11 == cpf[9].to_i
+        resto = soma % 11
+        digito = resto < 2 ? 0 : 11 - resto
+        digito == cpf[9].to_i
       end
 
       def self.second_digit(cpf)
-        second_digit = cpf[0..9]
+        second_digits = cpf[0..9]
         soma = 0
         ponteiro = 11
-        second_digit.chars.each do |char|
-          res = (char.to_i * ponteiro)
-          soma += res
+        second_digits.chars.each do |char|
+          soma += char.to_i * ponteiro
           ponteiro -= 1
         end
-        soma * 10 % 11 == cpf[10].to_i || (soma * 10 % 11 == 10 && cpf[10].to_i.zero?)
+        resto = soma % 11
+        digito = resto < 2 ? 0 : 11 - resto
+        digito == cpf[10].to_i
       end
 
       def self.cpj_not_valid?(cpf)
