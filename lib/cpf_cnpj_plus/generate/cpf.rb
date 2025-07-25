@@ -8,9 +8,10 @@ module CpfCnpjPlus
       # Gera um CPF válido.
       # @return [String] CPF formatado.
       def self.generate(base = nil)
-        Array.new(9) { rand(0..9) }.join
+        base ||= Array.new(9) { rand(0..9) }.join
         digits = calculate_digits(base)
-        "#{base}#{digits}".insert(3, ".").insert(7, ".").insert(11, "-")
+        cpf = "#{base}#{digits}"
+        cpf.insert(3, ".").insert(7, ".").insert(11, "-")
       end
 
       # Calcula os dígitos verificadores do CPF.
