@@ -23,15 +23,23 @@ module CpfCnpjPlus
     CpfCnpjPlus::Format::Cpf.format(cpf)
   end
 
+  def self.unformat_cpf(cpf)
+    CpfCnpjPlus::Format::Cpf.desformatar(cpf)
+  end
+
   def self.format_cnpj(cnpj)
     CpfCnpjPlus::Format::Cnpj.format(cnpj)
+  end
+
+  def self.unformat_cnpj(cnpj)
+    CpfCnpjPlus::Format::Cnpj.desformatar(cnpj)
   end
 
   def self.generate_cpf
     CpfCnpjPlus::Generate::Cpf.generate
   end
 
-  def self.generate_cnpj(alfa: false)
+  def self.generate_cnpj(alfa = false)
     CpfCnpjPlus::Generate::Cnpj.generate(alfa)
   end
 end

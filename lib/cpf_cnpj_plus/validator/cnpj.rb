@@ -8,7 +8,7 @@ module CpfCnpjPlus
       def self.valid?(cnpj)
         cnpj = normalize(cnpj)
         return false unless valid_length?(cnpj)
-        return false if cpj_not_valid?(cnpj)
+        return false if cnpj_not_valid?(cnpj)
         return false unless valid_structure?(cnpj)
 
         base = cnpj[0..11].chars.map { |c| char_to_value(c) }
@@ -33,7 +33,7 @@ module CpfCnpjPlus
         if ("0".."9").include?(char)
           char.ord - 48
         elsif ("A".."Z").include?(char)
-          char.ord - 48 # Ajuste para A=10, B=11, ..., Z=35
+          char.ord - 48 # Ajuste para A=17, B=18, ..., Z=42
         else
           raise ArgumentError, "Caractere inválido"
         end
@@ -58,16 +58,18 @@ module CpfCnpjPlus
         fator_index.each_with_index do |fator, index|
           soma += base[index] * fator
         end
-        digit = (soma * 10) % 11
-        digit = 0 if digit == 10
-        digit
+        resto = soma % 11
+        if resto == 0 || resto == 1
+          0
+        else
+          11 - resto
+        end
       end
 
-      def self.cpj_not_valid?(cnpj)
-        cnpj = cnpj.to_s.gsub(/[^0-9]/, "")
-        %w[00000000000000 11111111111111 22222222222222 33333333333333
-           44444444444444 55555555555555 66666666666666 77777777777777
-           88888888888888 99999999999999].include?(cnpj)
+      def self.cnpj_not_valid?(cnpj)
+        # Não remova letras, só verifique se todos os caracteres são iguais
+      normalized = normalize(cnpj)
+      normalized.chars.uniq.size == 1
       end
     end
   end

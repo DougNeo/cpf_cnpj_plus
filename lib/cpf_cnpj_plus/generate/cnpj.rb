@@ -5,7 +5,7 @@ module CpfCnpjPlus
     class Cnpj
       # Gera um CNPJ válido.
       # @return [String] CNPJ formatado.
-      def self.generate(alfa: false)
+      def self.generate(alfa = false)
         return generate_alfa if alfa
 
         generate_numeric
